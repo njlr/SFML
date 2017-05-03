@@ -1,9 +1,0 @@
-
-
-cxx_binary(
-  name = 'sfml-shader-bin',
-  srcs = ['examples/shader/Shader.cpp'],
-  deps = ['//:sfml']
-)
-
-

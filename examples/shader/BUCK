@@ -10,8 +10,5 @@ sh_binary(
   main = ':sfml-shader-bin',
   resources = glob([
     'resources/**/*'
-  ]),
-  visibility = [
-    'PUBLIC',
-  ],
+  ])
 )
