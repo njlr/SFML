@@ -1,0 +1,19 @@
+cxx_binary(
+  name = 'sound-bin',
+  srcs = [
+    'Sound.cpp',
+  ],
+  deps = [
+    '//:audio',
+  ],
+)
+
+sh_binary(
+  name = 'sound',
+  main = ':sound-bin',
+  resources = glob([
+    'resources/**/*.flac',
+    'resources/**/*.ogg',
+    'resources/**/*.wav',
+  ]),
+)

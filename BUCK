@@ -1,27 +1,48 @@
 include_defs('//BUCKAROO_DEPS')
 
+macos_exported_linker_flags = [
+  '-framework', 'openal',
+]
+
+linux_exported_linker_flags = [
+  '-lopenal',
+]
+
 prebuilt_cxx_library(
-  name = 'sfml-openal',
+  name = 'openal',
   header_only = True,
+  header_namespace = '',
   exported_headers = subdir_glob([
-    ('extlibs/headers/AL', '*.h')
+    ('extlibs/headers/AL', '**/*.h'),
   ]),
-  exported_linker_flags = ['-lopenal']
+  exported_platform_linker_flags = [
+    ('default', macos_exported_linker_flags),
+    ('^linux.*', linux_exported_linker_flags),
+    ('^macos.*', macos_exported_linker_flags),
+  ],
 )
 
 cxx_library(
-  name = 'sfml-audio',
-  header_namespace = '',
-  srcs = glob(['src/SFML/Audio/**/*.cpp']),
-  headers = subdir_glob([
-    ('src', 'SFML/Audio/**/*.hpp')
-  ]),
+  name = 'audio',
+  header_namespace = 'SFML',
   exported_headers = subdir_glob([
-    ('include', 'SFML/Audio.hpp'),
-    ('include', 'SFML/Audio/**/*.inl'),
-    ('include', 'SFML/Audio/**/*.hpp')
+    ('include/SFML', 'Audio.hpp'),
+    ('include/SFML', 'Audio/**/*.inl'),
+    ('include/SFML', 'Audio/**/*.hpp'),
   ]),
-  deps = [':sfml-openal'] + BUCKAROO_DEPS,
-  exported_preprocessor_flags = ['-DSFML_DEPRECATED=', '-DHAVE_PROTOTYPES=1'],
-  visibility = ['PUBLIC']
+  headers = subdir_glob([
+    ('src/SFML', 'Audio/**/*.hpp'),
+  ]),
+  srcs = glob([
+    'src/SFML/Audio/**/*.cpp',
+  ]),
+  exported_preprocessor_flags = [
+    '-DHAVE_PROTOTYPES=1',
+  ],
+  deps = BUCKAROO_DEPS + [
+    ':openal',
+  ],
+  visibility = [
+    'PUBLIC',
+  ],
 )
