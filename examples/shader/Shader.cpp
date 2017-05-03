@@ -24,12 +24,12 @@ public:
     bool onLoad()
     {
         // Load the texture and initialize the sprite
-        if (!m_texture.loadFromFile("resources/background.jpg"))
+        if (!m_texture.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/background.jpg"))
             return false;
         m_sprite.setTexture(m_texture);
 
         // Load the shader
-        if (!m_shader.loadFromFile("resources/pixelate.frag", sf::Shader::Fragment))
+        if (!m_shader.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/pixelate.frag", sf::Shader::Fragment))
             return false;
         m_shader.setUniform("texture", sf::Shader::CurrentTexture);
 
@@ -93,7 +93,7 @@ public:
         m_text.setPosition(30, 20);
 
         // Load the shader
-        if (!m_shader.loadFromFile("resources/wave.vert", "resources/blur.frag"))
+        if (!m_shader.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/wave.vert", "/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/blur.frag"))
             return false;
 
         return true;
@@ -146,7 +146,7 @@ public:
         }
 
         // Load the shader
-        if (!m_shader.loadFromFile("resources/storm.vert", "resources/blink.frag"))
+        if (!m_shader.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/storm.vert", "/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/blink.frag"))
             return false;
 
         return true;
@@ -194,10 +194,10 @@ public:
         m_surface.setSmooth(true);
 
         // Load the textures
-        if (!m_backgroundTexture.loadFromFile("resources/sfml.png"))
+        if (!m_backgroundTexture.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/sfml.png"))
             return false;
         m_backgroundTexture.setSmooth(true);
-        if (!m_entityTexture.loadFromFile("resources/devices.png"))
+        if (!m_entityTexture.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/devices.png"))
             return false;
         m_entityTexture.setSmooth(true);
 
@@ -213,7 +213,7 @@ public:
         }
 
         // Load the shader
-        if (!m_shader.loadFromFile("resources/edge.frag", sf::Shader::Fragment))
+        if (!m_shader.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/edge.frag", sf::Shader::Fragment))
             return false;
         m_shader.setUniform("texture", sf::Shader::CurrentTexture);
 
@@ -287,11 +287,11 @@ public:
         }
 
         // Load the texture
-        if (!m_logoTexture.loadFromFile("resources/logo.png"))
+        if (!m_logoTexture.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/logo.png"))
             return false;
 
         // Load the shader
-        if (!m_shader.loadFromFile("resources/billboard.vert", "resources/billboard.geom", "resources/billboard.frag"))
+        if (!m_shader.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/billboard.vert", "/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/billboard.geom", "/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/billboard.frag"))
             return false;
         m_shader.setUniform("texture", sf::Shader::CurrentTexture);
 
@@ -352,7 +352,7 @@ int main()
 
     // Load the application font and pass it to the Effect class
     sf::Font font;
-    if (!font.loadFromFile("resources/sansation.ttf"))
+    if (!font.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/sansation.ttf"))
         return EXIT_FAILURE;
     Effect::setFont(font);
 
@@ -371,7 +371,7 @@ int main()
 
     // Create the messages background
     sf::Texture textBackgroundTexture;
-    if (!textBackgroundTexture.loadFromFile("resources/text-background.png"))
+    if (!textBackgroundTexture.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/shader/resources/text-background.png"))
         return EXIT_FAILURE;
     sf::Sprite textBackground(textBackgroundTexture);
     textBackground.setPosition(0, 520);

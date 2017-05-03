@@ -1,0 +1,5 @@
+cxx_binary(
+  name = 'ftp',
+  srcs = ['Ftp.cpp'],
+  deps = ['//:sfml']
+)

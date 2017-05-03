@@ -1,0 +1,17 @@
+cxx_binary(
+  name = 'sfml-pong-bin',
+  srcs = ['Pong.cpp'],
+  deps = ['//:sfml']
+)
+
+
+sh_binary(
+  name = 'pong',
+  main = ':sfml-pong-bin',
+  resources = glob([
+    'resources/**/*'
+  ]),
+  visibility = [
+    'PUBLIC',
+  ],
+)

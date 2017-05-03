@@ -1,0 +1,13 @@
+cxx_binary(
+  name = 'sfml-opengl-bin',
+  srcs = ['OpenGL.cpp'],
+  deps = ['//:sfml']
+)
+
+sh_binary(
+  name = 'opengl',
+  main = ':sfml-opengl-bin',
+  resources = glob([
+    'resources/**/*'
+  ])
+)

@@ -1,0 +1,17 @@
+cxx_binary(
+  name = 'sfml-shader-bin',
+  headers = glob(['*.hpp']),
+  srcs = ['Shader.cpp'],
+  deps = ['//:sfml']
+)
+
+sh_binary(
+  name = 'shader',
+  main = ':sfml-shader-bin',
+  resources = glob([
+    'resources/**/*'
+  ]),
+  visibility = [
+    'PUBLIC',
+  ],
+)

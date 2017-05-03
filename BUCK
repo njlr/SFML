@@ -21,7 +21,8 @@ cxx_library(
   ]),
   deps = [],
   exported_preprocessor_flags = ['-DSFML_DEPRECATED=', '-DHAVE_PROTOTYPES=1'],
-  exported_linker_flags = ['-lX11', '-lGL', '-lpthread']
+  exported_linker_flags = ['-lX11', '-lGL', '-lpthread'],
+  visibility = ['PUBLIC']
 )
 
 cxx_library(
@@ -49,7 +50,8 @@ cxx_library(
   exported_platform_linker_flags = [
     ('default', ['-lX11', '-lGL', '-lXrandr', '-ludev']),
     ('^linux.*', ['-lX11', '-lGL', '-lXrandr', '-ludev'])
-  ]
+  ],
+  visibility = ['PUBLIC']
 )
 
 cxx_library(
@@ -66,7 +68,8 @@ cxx_library(
   ]),
   deps = [':sfml-window'] + BUCKAROO_DEPS, #stb_image #freetype2
   exported_preprocessor_flags = ['-DSFML_DEPRECATED=', '-DHAVE_PROTOTYPES=1'],
-  exported_linker_flags = ['-lGL']
+  exported_linker_flags = ['-lGL'],
+  visibility = ['PUBLIC']
 )
 
 prebuilt_cxx_library(
@@ -75,7 +78,7 @@ prebuilt_cxx_library(
   exported_headers = subdir_glob([
     ('extlibs/headers/AL', '*.h')
   ]),
-  exported_linker_flags = []
+  exported_linker_flags = ['-lopenal']
 )
 
 cxx_library(
@@ -92,6 +95,7 @@ cxx_library(
   ]),
   deps = [':sfml-openal'],
   exported_preprocessor_flags = ['-DSFML_DEPRECATED=', '-DHAVE_PROTOTYPES=1'],
+  visibility = ['PUBLIC']
 )
 
 
@@ -120,29 +124,17 @@ cxx_library(
   ]),
   deps = [':sfml-system'],
   exported_preprocessor_flags = ['-DSFML_DEPRECATED='],
+  visibility = ['PUBLIC']
 )
 
-cxx_binary(
-  name = 'sfml-window-example',
-  srcs = ['examples/window/Window.cpp'],
-  deps = [':sfml-window']
-)
-
-cxx_binary(
-  name = 'sfml-pong-example',
-  srcs = ['examples/pong/Pong.cpp'],
-  linker_flags = ['-lopenal'],
-  deps = [':sfml-graphics', ':sfml-audio']
-)
-
-cxx_binary(
-  name = 'sfml-shader-example',
-  srcs = ['examples/shader/Shader.cpp'],
-  deps = [':sfml-graphics']
-)
-
-cxx_binary(
-  name = 'sfml-ftp-example',
-  srcs = ['examples/ftp/Ftp.cpp'],
-  deps = [':sfml-network']
+prebuilt_cxx_library(
+  name = 'sfml',
+  header_namespace = 'SFML',
+  header_only = True,
+  exported_headers = subdir_glob([
+    ('include/SFML', '**/*.hpp'),
+    ('include/SFML', '**/*.inl')
+  ]),
+  deps = [':sfml-system', ':sfml-window', ':sfml-graphics', ':sfml-network', ':sfml-audio'],
+  visibility = ['PUBLIC']
 )

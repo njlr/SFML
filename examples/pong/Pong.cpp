@@ -33,7 +33,7 @@ int main()
 
     // Load the sounds used in the game
     sf::SoundBuffer ballSoundBuffer;
-    if (!ballSoundBuffer.loadFromFile("resources/ball.wav"))
+    if (!ballSoundBuffer.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/pong/resources/ball.wav"))
         return EXIT_FAILURE;
     sf::Sound ballSound(ballSoundBuffer);
 
@@ -63,7 +63,7 @@ int main()
 
     // Load the text font
     sf::Font font;
-    if (!font.loadFromFile("resources/sansation.ttf"))
+    if (!font.loadFromFile("/home/gaetano/Projects/buckaroo-tests/SFML/examples/pong/resources/sansation.ttf"))
         return EXIT_FAILURE;
 
     // Initialize the pause message

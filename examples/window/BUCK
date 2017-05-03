@@ -1,0 +1,5 @@
+cxx_binary(
+  name = 'sfml-window-example',
+  srcs = ['Window.cpp'],
+  deps = ['//:sfml']
+)
